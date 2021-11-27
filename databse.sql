@@ -1,0 +1,11 @@
+CREATE DATABASE homework4;
+
+CREATE TABLE posts(
+    id BIGSERIAL PRIMARY KEY NOT NULL,
+    title VARCHAR(50),
+    subtitle VARCHAR(50),
+    image_url VARCHAR,
+    likes INT NOT NULL
+    date TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+);
+
