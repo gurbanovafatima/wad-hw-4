@@ -22,13 +22,22 @@ app.get('/', async function(req,res) {
 
 app.get('/:id', async function(req,res) {
     try {
-        const onePost = await db.query(`select * from posts where id=${req.params.id} order by posted_at desc`);
-        console.log(onePost.rows);
-        res.render("singlepost", { onepost: onePost.rows});
+        if (!isNaN(req.params.id) ) {
+            const onePost = await db.query(`select * from posts where id=${req.params.id} order by posted_at desc`);
+            res.render("singlepost", { onepost: onePost.rows});
+        } else {
+            res.render('404')
+        }
     } catch (error) {
         console.log(error.message);
     }
 });
+
+
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', function(req, res){
+    res.render('404')
+  });
 
 
 const PORT = 8080;
