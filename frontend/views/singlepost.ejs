@@ -1,0 +1,60 @@
+<link href="/css/styles.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<header>
+    <div id="upper">
+        <div id="logo">
+            <a href="/"><img src="/images/logo.png" alt="" srcset=""></a>
+        </div>
+        <div id="center">
+            <input type="search" name="search" id="search" placeholder="Search...">
+            <button id="btn-search">Search</button>
+        </div>
+        <div id="avatar">
+            <img src="/images/avatar.png" alt="" srcset="">
+        </div>
+    </div>
+
+    <div id="nav-links">
+        <a href="/">Link 1</a>
+        |
+        <a href="/">Link 2</a>
+        |
+        <a href="/">Link 3</a>
+
+    </div>
+
+</header>
+
+<main>
+    <div class="container">
+
+        <% if (onepost.length == 0) { %>
+            <h2>There is no post with this id</h2>
+         <% } else { %>
+            <% for(let i=0;i<onepost.length;i++){ %>
+                <div id="each-post" class="post-card">
+                    <div id="row-head">
+                        <img src="/images/avatar.png" alt="" srcset="">
+                        <p><%= onepost[i].posted_at.toLocaleString('en-En',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></p>
+                    </div>
+                    <div id="row-image">
+                        <img src="<%= onepost[i].image_url %>"  alt="" srcset="">
+                    </div>
+                    <div id="row-title">
+                        <h3><%= onepost[i].title %></h3>
+                    </div>
+                    <div id="row-like">
+                        <button><i class="fa fa-thumbs-up"></i> <%= onepost[i].likes %></button>
+                    </div>
+    
+                </div>
+                <% } %>
+         <% } %>
+    </div>
+</main>
+
+<footer id="footer">
+    <p>some random footer text</p>
+</footer>

@@ -20,6 +20,16 @@ app.get('/', async function(req,res) {
     }
 });
 
+app.get('/:id', async function(req,res) {
+    try {
+        const onePost = await db.query(`select * from posts where id=${req.params.id} order by posted_at desc`);
+        console.log(onePost.rows);
+        res.render("singlepost", { onepost: onePost.rows});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
 
 const PORT = 8080;
 app.listen(PORT, function(req, res) {
