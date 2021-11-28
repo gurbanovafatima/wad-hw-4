@@ -5,7 +5,7 @@ CREATE TABLE posts(
     title VARCHAR(50),
     subtitle VARCHAR(50),
     image_url VARCHAR,
-    likes INT NOT NULL
-    date TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+    likes INT NOT NULL DEFAULT 0,
+    posted_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
 );
 

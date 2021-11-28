@@ -19,7 +19,7 @@
     <div id="nav-links">
         <a href="/">Link 1</a>
         |
-        <a href="/">Link 2</a>
+        <a href="/posts/add-new">Add new post</a>
         |
         <a href="/">Link 3</a>
 
@@ -34,7 +34,7 @@
             <h2>You did not post anything</h2>
             <% } else { %>
                 <% for(let i=0;i<posts.length;i++){ %>
-                    <div id="each-post" class="post-card">
+                    <div id="each-post" onclick="window.location.href='/<%= posts[i].id %>'" class="post-card">
                         <div id="row-head">
                             <img src="/images/avatar.png" alt="" srcset="">
                             <p>
@@ -68,6 +68,7 @@
 
 <script>
     const like = (id, like) => {
+        event.stopPropagation(); // stop click event of post element when clicking like button
         const btn = document.getElementById(`btn-like-${id}`);
         const likeCount = document.getElementById(`like-count-${id}`);
         fetch(`/${id}`, {

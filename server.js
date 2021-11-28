@@ -1,12 +1,14 @@
 const express = require("express");
 const path = require("path");
 const db = require('./config/db_config');
+const bodyParser = require("body-parser");
 
 app = express();
 
 app.use(express.static(__dirname + '/frontend/public'));
 app.set('views', path.join(__dirname, './frontend/views'));
 app.set('view engine', 'ejs');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })  
 
 
 // GET all posts
@@ -15,6 +17,29 @@ app.get('/', async function(req,res) {
     try {
         const allPosts = await db.query("select * from posts order by posted_at desc");
         res.render("posts", { posts: allPosts.rows});
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
+app.get('/posts/add-new', async function(req,res) {
+    try {
+        res.render("addnewpost");
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+app.post('/posts/add-new', urlencodedParser ,async function(req,res) {
+    try {
+        const title = req.body.title
+        const subtitle = req.body.subtitle
+        const image_url = req.body.image_url
+        const result = await db.query(`insert into posts(title,subtitle,image_url) values('${title}','${subtitle}','${image_url}')`)
+        console.log(result)
+       // const allPosts = await db.query("select * from posts order by posted_at desc");
+        res.redirect(301,'/')
     } catch (error) {
         console.log(error.message);
     }
