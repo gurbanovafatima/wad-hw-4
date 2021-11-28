@@ -33,6 +33,34 @@ app.get('/:id', async function(req,res) {
     }
 });
 
+app.delete('/:id', async function(req,res) {
+    try {
+        if (!isNaN(req.params.id) ) {
+            await db.query(`delete from posts where id=${req.params.id}`);
+        } else {
+            res.render('404')
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+app.put('/:id', async function(req,res) {
+    try {
+        if (!isNaN(req.params.id) ) {
+            const post = await db.query(`select likes from posts where id=${req.params.id}`)
+            let likeCount = post.rows[0].likes;
+            likeCount++;
+            await db.query(`update posts set likes=${likeCount} where id=${req.params.id}`);
+        } else {
+            res.render('404')
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
 
 //The 404 Route (ALWAYS Keep this as the last route)
 app.get('*', function(req, res){

@@ -47,7 +47,9 @@
                     </div>
                     <div id="row-like">
                         <div><i class="fa fa-thumbs-up"></i> <%= onepost[i].likes %></div>
-                        <button><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>
+                        <button onclick="deletePost('<%= onepost[i].id %>')"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                            Delete
+                        </button>
                     </div>
     
                 </div>
@@ -59,3 +61,14 @@
 <footer id="footer">
     <p>some random footer text</p>
 </footer>
+
+<script>
+    const deletePost = (id) => {
+        fetch(`/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+        window.location.href = '/';
+    }
+</script>

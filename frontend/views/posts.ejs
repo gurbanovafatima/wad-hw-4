@@ -30,31 +30,52 @@
 <main>
     <div class="container">
 
-        <% if (posts.length == 0) { %>
+        <% if (posts.length==0) { %>
             <h2>You did not post anything</h2>
-         <% } else { %>
-            <% for(let i=0;i<posts.length;i++){ %>
-                <div id="each-post" class="post-card">
-                    <div id="row-head">
-                        <img src="/images/avatar.png" alt="" srcset="">
-                        <p><%= posts[i].posted_at.toLocaleString('en-En',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></p>
+            <% } else { %>
+                <% for(let i=0;i<posts.length;i++){ %>
+                    <div id="each-post" class="post-card">
+                        <div id="row-head">
+                            <img src="/images/avatar.png" alt="" srcset="">
+                            <p>
+                                <%= posts[i].posted_at.toLocaleString('en-En',{ weekday: 'long' , year: 'numeric' ,
+                                    month: 'long' , day: 'numeric' , hour: '2-digit' , minute: '2-digit' }) %>
+                            </p>
+                        </div>
+                        <div id="row-image">
+                            <img src="<%= posts[i].image_url %>" alt="" srcset="">
+                        </div>
+                        <div id="row-title">
+                            <h3>
+                                <%= posts[i].title %>
+                            </h3>
+                        </div>
+                        <div id="row-like">
+                            <button id="btn-like-<%= posts[i].id %>" onclick="like('<%= posts[i].id %>','<%= posts[i].likes %>');"><i class="fa fa-thumbs-up"></i>
+                                <span id="like-count-<%= posts[i].id %>"><%= posts[i].likes %></span>
+                            </button>
+                        </div>
+
                     </div>
-                    <div id="row-image">
-                        <img src="<%= posts[i].image_url %>"  alt="" srcset="">
-                    </div>
-                    <div id="row-title">
-                        <h3><%= posts[i].title %></h3>
-                    </div>
-                    <div id="row-like">
-                        <button><i class="fa fa-thumbs-up"></i> <%= posts[i].likes %></button>
-                    </div>
-    
-                </div>
-                <% } %>
-         <% } %>
+                    <% } %>
+                        <% } %>
     </div>
 </main>
 
 <footer id="footer">
     <p>some random footer text</p>
 </footer>
+
+<script>
+    const like = (id, like) => {
+        const btn = document.getElementById(`btn-like-${id}`);
+        const likeCount = document.getElementById(`like-count-${id}`);
+        fetch(`/${id}`, {
+            method: 'PUT',
+        }).then(btn.classList.toggle('disabled'))
+        .then(like = Number(like) +1)
+        .then(likeCount.innerText = like)
+    }
+
+    
+</script>
