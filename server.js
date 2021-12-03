@@ -34,9 +34,10 @@ app.get('/posts/add-new', async function(req,res) {
 app.post('/posts/add-new', urlencodedParser ,async function(req,res) {
     try {
         const title = req.body.title
-        const subtitle = req.body.subtitle
+        const body = req.body.body
         const image_url = req.body.image_url
-        const result = await db.query(`insert into posts(title,subtitle,image_url) values('${title}','${subtitle}','${image_url}')`)
+        const image_description = req.body.image_description
+        const result = await db.query(`insert into posts(title,body,image_url,image_description) values('${title}','${body}','${image_url}','${image_description}')`)
         console.log(result)
        // const allPosts = await db.query("select * from posts order by posted_at desc");
         res.redirect(301,'/')

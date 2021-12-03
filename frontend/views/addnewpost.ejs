@@ -1,46 +1,50 @@
-<link href="/css/styles.css" rel="stylesheet" type="text/css">
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <%- include('./partials/head.ejs') %>
+        <title>PostIt - Add new post</title>
+</head>
 
-<header>
-    <div id="upper">
-        <div id="logo">
-            <a href="/"><img src="/images/logo.png" alt="" srcset=""></a>
-        </div>
-        <div id="center">
-            <input type="search" name="search" id="search" placeholder="Search...">
-            <button id="btn-search">Search</button>
-        </div>
-        <div id="avatar">
-            <img src="/images/avatar.png" alt="" srcset="">
-        </div>
-    </div>
+<body>
+    <%- include('./partials/navbar.ejs') %>
 
-    <div id="nav-links">
-        <a href="/">Link 1</a>
-        |
-        <a href="/">Link 2</a>
-        |
-        <a href="/">Link 3</a>
+        <main>
+            <div class="container">
+                <div id="add-post-container">
+                    <p>Add new post</p>
+                    <div id="form-div">
+                        <form id="add-post" action="/posts/add-new" method="post">
+                            <div class="form-row">
+                                <label for="title"></label>
+                                <input type="text" name="title" required maxlength="50" placeholder="Post title">
+                            </div>
+                            <div class="form-row">
+                                <label for="body"></label>
+                                <textarea rows="6" name="body" required maxlength="500"
+                                    placeholder="Type the main text of the post here"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <label for="image"></label>
+                                <input type="url" name="image_url" required placeholder="Insert image url here">
+                            </div>
+                            <div class="form-row">
+                                <label for="image_description"></label>
+                                <input type="text" name="image_description" required maxlength="50"
+                                    placeholder="Add short description of the image">
+                            </div>
+                            <input type="submit" class="btn" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-    </div>
+        </main>
 
-</header>
+        <%- include('./partials/footer.ejs') %>
 
-<main>
-    <div class="container">
-        <form id="add-post" action="/posts/add-new" method="post">
-            <label for="title">Title</label>
-            <input type="text" name="title" required maxlength="50">  <br>
-            <label for="subtitle">Body</label>
-            <textarea rows="15" name="subtitle" required maxlength="50"> </textarea> <br> 
-            <label for="image">Image url</label>
-            <input type="url" name="image_url" required >  <br> 
-            <input type="submit" value="Submit"> 
-        </form>
-    </div>
-</main>
+        <script type="text/javascript" src="/js/script.js"></script>
 
-<footer id="footer">
-    <p>some random footer text</p>
-</footer>
+</body>
+
+</html>

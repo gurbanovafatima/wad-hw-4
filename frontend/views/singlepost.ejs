@@ -1,74 +1,73 @@
-<link href="/css/styles.css" rel="stylesheet" type="text/css">
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <%- include('./partials/head.ejs') %>
+        <title>PostIt - Single post</title>
+</head>
 
-<header>
-    <div id="upper">
-        <div id="logo">
-            <a href="/"><img src="/images/logo.png" alt="" srcset=""></a>
-        </div>
-        <div id="center">
-            <input type="search" name="search" id="search" placeholder="Search...">
-            <button id="btn-search">Search</button>
-        </div>
-        <div id="avatar">
-            <img src="/images/avatar.png" alt="" srcset="">
-        </div>
-    </div>
+<body>
+    <%- include('./partials/navbar.ejs') %>
 
-    <div id="nav-links">
-        <a href="/">Link 1</a>
-        |
-        <a href="/">Link 2</a>
-        |
-        <a href="/">Link 3</a>
+        <main>
+            <div class="container">
 
-    </div>
+                <% if (onepost.length==0) { %>
+                    <h2>There is no post with this id</h2>
+                    <% } else { %>
+                        <% for(let i=0;i<onepost.length;i++){ %>
+                            <div id="each-post" class="post-card">
+                                <div id="row-head">
+                                    <img src="/images/avatar.png" alt="" srcset="" class="avatar">
+                                    <p>
+                                        <%= onepost[i].posted_at.toLocaleString('en-En',{ weekday: 'long' ,
+                                            year: 'numeric' , month: 'long' , day: 'numeric' , hour: '2-digit' ,
+                                            minute: '2-digit' }) %>
+                                    </p>
+                                </div>
+                                <div id="row-image">
+                                    <img src="<%= onepost[i].image_url %>" alt="" srcset="">
+                                </div>
+                                <div id="row-title">
+                                    <h3>
+                                        <%= onepost[i].title %>
+                                    </h3>
+                                </div>
+                                <div id="row-body">
+                                    <p>
+                                        <%= onepost[i].body %>
+                                    </p>
+                                </div>
+                                <div id="row-like">
+                                    <div><i class="fa fa-thumbs-up"></i>
+                                        <%= onepost[i].likes %>
+                                    </div>
+                                    <button class="btn" onclick="deletePost('<%= onepost[i].id %>')"><i
+                                            class="fa fa-trash-o" aria-hidden="true"></i>
+                                        Delete
+                                    </button>
+                                </div>
 
-</header>
+                            </div>
+                            <% } %>
+                                <% } %>
+            </div>
+        </main>
 
-<main>
-    <div class="container">
+        <%- include('./partials/footer.ejs') %>
 
-        <% if (onepost.length == 0) { %>
-            <h2>There is no post with this id</h2>
-         <% } else { %>
-            <% for(let i=0;i<onepost.length;i++){ %>
-                <div id="each-post" class="post-card">
-                    <div id="row-head">
-                        <img src="/images/avatar.png" alt="" srcset="">
-                        <p><%= onepost[i].posted_at.toLocaleString('en-En',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) %></p>
-                    </div>
-                    <div id="row-image">
-                        <img src="<%= onepost[i].image_url %>"  alt="" srcset="">
-                    </div>
-                    <div id="row-title">
-                        <h3><%= onepost[i].title %></h3>
-                    </div>
-                    <div id="row-like">
-                        <div><i class="fa fa-thumbs-up"></i> <%= onepost[i].likes %></div>
-                        <button onclick="deletePost('<%= onepost[i].id %>')"><i class="fa fa-trash-o" aria-hidden="true"></i>
-                            Delete
-                        </button>
-                    </div>
-    
-                </div>
-                <% } %>
-         <% } %>
-    </div>
-</main>
+            <script>
+                const deletePost = (id) => {
+                    fetch(`/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(res => res.json())
+                        .then(res => console.log(res))
+                    window.location.href = '/';
+                }
+            </script>
+            <script type="text/javascript" src="/js/script.js"></script>
 
-<footer id="footer">
-    <p>some random footer text</p>
-</footer>
+</body>
 
-<script>
-    const deletePost = (id) => {
-        fetch(`/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(res => console.log(res))
-        window.location.href = '/';
-    }
-</script>
+</html>

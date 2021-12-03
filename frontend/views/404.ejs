@@ -1,5 +1,23 @@
-<div style="text-align: center;">
-    <h1>This is 404 page. If you see this, it means there is no page for this url</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-    <iframe src="https://giphy.com/embed/eKrgVyZ7zLvJrgZNZn" width="360" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/eKrgVyZ7zLvJrgZNZn">via GIPHY</a></p>
-</div>
+<head>
+    <%- include('./partials/head.ejs') %>
+        <title>404 - page not found!</title>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+        <div id="gif">
+            <h1>This is 404 page. If you see this, it means there is no page for this url</h1>
+
+            <iframe src="https://giphy.com/embed/eKrgVyZ7zLvJrgZNZn" class="giphy-embed" allowFullScreen></iframe>
+            <p><a href="https://giphy.com/gifs/eKrgVyZ7zLvJrgZNZn">via GIPHY</a></p>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+            <script type="text/javascript" src="/js/script.js"></script>
+</body>
+
+</html>
