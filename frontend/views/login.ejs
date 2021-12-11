@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Welcome to postIt! Please Log In</title>
-	<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="res/css/login.css">
-	<link rel="stylesheet" href="res/css/general.css">
+    <%- include('./partials/head.ejs') %>
+        <title>PostIt - Login</title>
 </head>
 
 <body>
+	<%- include('./partials/navbar.ejs') %>
+	<main>
 	<div class="contentContainer">
 		<div class="logoContainer">
 			<img src="res/images/logo.png"></img>
@@ -35,6 +34,9 @@
 			<a href="https://www.wikihow.com/Remember-a-Forgotten-Password">Forgot password?</a>
 		</div>
 	</div>
+	</main>
+	<%- include('./partials/footer.ejs') %>
+	<script type="text/javascript" src="/js/script.js"></script>
 </body>
 
 </html>
