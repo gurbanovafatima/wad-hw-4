@@ -241,7 +241,7 @@ input:focus, textarea:focus {
     outline: rgba(0, 0, 0, 0.5) solid 1px;
 }
 
-input[type=text], input[type=url] {
+input[type=text], input[type=url], input[type=password] {
     height: 40px;
 }
 
@@ -284,4 +284,33 @@ li a:hover {
 
 .active a {
     color: #062b4e;
+}
+
+#login-welcome {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    margin-top: 0;
+    font-size: x-large;
+}
+
+#login-logo {
+    width: 100px;
+    margin-right: 50px;
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+strong {
+    margin: 10px;
+}
+
+.mt {
+    margin-top: 10px;
 }

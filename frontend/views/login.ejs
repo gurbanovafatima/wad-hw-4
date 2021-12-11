@@ -9,32 +9,42 @@
 <body>
 	<%- include('./partials/navbar.ejs') %>
 	<main>
-	<div class="contentContainer">
-		<div class="logoContainer">
-			<img src="res/images/logo.png"></img>
-		</div>
-		<div class="loginContainer">
-			<h3>Welcome to postIt!</h3>
+		<div class="container">
+			<div id="add-post-container">
+				
+				<div id="login-welcome">
+					<img src="/images/logo.png" id="login-logo"></img>
+					<h3>Welcome to PostIt!</h3>
+				</div>
+				
 
-			<a href="login.html">Create an Account</a>
+				<div id="login-container">
+					
+					<a href="login.html">Create an Account</a>
+		
+					<p>Or</p>
+		
+					<strong>Please Log in</strong>
+		
+					<div class="form-row">
+						<input type="text" name="Email" placeholder="Email"><br>
+					</div>
 
-			<p>Or</p>
-
-			<strong>Please Log In</strong>
-
-			<div class="login-container">
-				<input type="text" name="Email" placeholder="Email"><br>
-				<input type="password" name="Password" placeholder="Password"><br>
+					<div class="form-row">
+						<input type="password" name="Password" placeholder="Password"><br>
+					</div>
+		
+					<a href="/" class="mt">
+						<button class="btn">Log in</button>
+					</a>
+		
+					<a href="https://www.wikihow.com/Remember-a-Forgotten-Password" class="mt">Forgot password?</a>
+				</div>
 			</div>
-
-			<a href="index.html">
-				<button id="login">Log In</button>
-			</a>
-
-			<a href="https://www.wikihow.com/Remember-a-Forgotten-Password">Forgot password?</a>
 		</div>
-	</div>
+
 	</main>
+
 	<%- include('./partials/footer.ejs') %>
 	<script type="text/javascript" src="/js/script.js"></script>
 </body>
